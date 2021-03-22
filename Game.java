@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Item item1;
         
     /**
      * Create the game and initialise its internal map.
@@ -34,7 +35,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office, kitchen, cellar, closet, bedroom, living_room, basement, restroom, balcony, attic, hallway;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -42,6 +43,16 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        kitchen = new Room("in the campus kitchen");
+        cellar = new Room("in the cellar");
+        closet = new Room("in the janitor's closet");
+        bedroom = new Room("in the bedroom");
+        living_room = new Room("in the living room");
+        basement = new Room("down in the basement");
+        restroom = new Room("in the bathroom/restroom");
+        balcony = new Room("on the balcony");
+        attic = new Room("up in the attic");
+        hallway = new Room("in the hallway");
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -56,6 +67,12 @@ public class Game
         lab.setExit("east", office);
 
         office.setExit("west", lab);
+        office.setExit("down", cellar);
+        office.setExit("east", closet);
+        
+        cellar.setExit("up", office);
+        
+        closet.setExit("west", office);
 
         currentRoom = outside;  // start game outside
     }
