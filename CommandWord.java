@@ -2,8 +2,8 @@
  * Representations for all the valid command words for the game
  * along with a string in a particular language.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Ben Suarez
+ * @version 2021.03.21
  */
 public enum CommandWord
 {
@@ -13,6 +13,9 @@ public enum CommandWord
     
     // The command string.
     private String commandString;
+    
+    private static final String[] validCommands = 
+    {"go", "quit", "help", "look", "eat"};
     
     /**
      * Initialise with the corresponding command string.
@@ -29,5 +32,14 @@ public enum CommandWord
     public String toString()
     {
         return commandString;
+    }
+    
+    public void showAll()
+    {
+        for(String command : validCommands)
+        {
+            System.out.print(command + " ");
+        }
+        System.out.println();
     }
 }

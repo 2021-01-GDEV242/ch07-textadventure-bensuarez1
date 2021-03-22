@@ -180,6 +180,10 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
     
+    /**
+     * @param look The eat command for player to eat food.
+     * @return the eat command.
+     */
     private void eat()
     {
         System.out.println("You have eaten now and you are not hungry anymore.");
