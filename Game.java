@@ -104,6 +104,10 @@ public class Game
         if(commandWord == CommandWord.LOOK){
             look();
         }
+        
+        if(commandWord == CommandWord.EAT){
+            eat();
+        }
 
         switch (commandWord) {
             case UNKNOWN:
@@ -173,8 +177,13 @@ public class Game
      */
     private void look()
     {
-     System.out.println(currentRoom.getLongDescription());
-    } 
+        System.out.println(currentRoom.getLongDescription());
+    }
+    
+    private void eat()
+    {
+        System.out.println("You have eaten now and you are not hungry anymore.");
+    }
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
