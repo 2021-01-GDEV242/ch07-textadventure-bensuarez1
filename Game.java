@@ -30,6 +30,9 @@ public class Game
         parser = new Parser();
     }
     
+    /**
+     * Allows user to play game outside of Bluej.
+     */
     public static void main(String [] args)
     {
         Game game = new Game();
@@ -41,7 +44,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office, kitchen, cellar, closet, bedroom, living_room, basement, restroom, balcony, attic, hallway;
+        Room outside, theater, pub, lab, office, kitchen, cellar, closet, bedroom, living_room, basement, restroom, balcony, attic, hallway, basement_closet;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -59,6 +62,7 @@ public class Game
         balcony = new Room("on the balcony");
         attic = new Room("up in the attic");
         hallway = new Room("in the hallway");
+        basement_closet = new Room("in the basement's closet");
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -103,6 +107,7 @@ public class Game
         attic.setExit("down", living_room);
         
         basement.setExit("up", lab);
+        basement.setExit("south", basement_closet);
 
         currentRoom = outside;  // start game outside
     }
@@ -219,6 +224,7 @@ public class Game
     }
     
     /**
+     * Lets player look around to see what room they are in.
      * @param look The look command for player
      * @return the look command.
      */
