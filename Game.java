@@ -65,14 +65,38 @@ public class Game
 
         lab.setExit("north", outside);
         lab.setExit("east", office);
+        lab.setExit("south", hallway);
+        lab.setExit("down", basement);
 
         office.setExit("west", lab);
         office.setExit("down", cellar);
         office.setExit("east", closet);
+        office.setExit("north", restroom);
         
         cellar.setExit("up", office);
         
         closet.setExit("west", office);
+        
+        restroom.setExit("south", office);
+        
+        hallway.setExit("north", lab);
+        hallway.setExit("east", bedroom);
+        hallway.setExit("up", living_room);
+        
+        bedroom.setExit("west", hallway);
+        bedroom.setExit("north", kitchen);
+        
+        living_room.setExit("down", hallway);
+        living_room.setExit("east", balcony);
+        living_room.setExit("up", attic);
+        
+        kitchen.setExit("south", bedroom);
+        
+        balcony.setExit("west",living_room);
+        
+        attic.setExit("down", living_room);
+        
+        basement.setExit("up", lab);
 
         currentRoom = outside;  // start game outside
     }
