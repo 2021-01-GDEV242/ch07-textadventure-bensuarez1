@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
@@ -12,14 +13,15 @@ import java.util.Iterator;
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Ben Suarez
+ * @version 2021.03.21
  */
 
 public class Room 
 {
-    private String description;
+    public String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private ArrayList<Item> list;
 
     /**
      * Create a room described "description". Initially, it has
@@ -31,6 +33,8 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
+        list = new ArrayList();
+        
     }
 
     /**
@@ -43,6 +47,35 @@ public class Room
         exits.put(direction, neighbor);
     }
 
+    /**
+     * Gives list of items to add.
+     * @param list, List of items.
+     * @return items that are listed.
+     */
+    public void addItem()
+    {
+        list.add(new Item("soda can",1));
+        list.add(new Item("rock",6));
+        list.add(new Item("textbook",4)); 
+        list.add(new Item("pen",1));
+        list.add(new Item("stick",2));
+        list.add(new Item("necklace",1));
+        list.add(new Item("phone",2));
+    }
+    
+    /**
+     * Prints out the item's label in-game.
+     * @return the returnString.
+     */
+    public String getItemString()
+    {
+        String returnString = "Item: ";
+        {
+            returnString += list;
+        }
+        return returnString;
+    }
+    
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -60,7 +93,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString() + ".\n" + getItemString();
     }
 
     /**

@@ -11,14 +11,15 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Ben Suarez
+ * @version 2021.03.21
  */
 
 public class Game 
 {
     private Parser parser;
     private Room currentRoom;
+    private Item item1;
         
     /**
      * Create the game and initialise its internal map.
@@ -28,13 +29,22 @@ public class Game
         createRooms();
         parser = new Parser();
     }
+    
+    /**
+     * Allows user to play game outside of Bluej.
+     */
+    public static void main(String [] args)
+    {
+        Game game = new Game();
+        game.play();
+    }
 
     /**
      * Create all the rooms and link their exits together.
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office, kitchen, cellar, closet, bedroom, living_room, basement, restroom, balcony, attic, hallway, basement_closet;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -42,6 +52,17 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        kitchen = new Room("in the campus kitchen");
+        cellar = new Room("in the cellar");
+        closet = new Room("in the janitor's closet");
+        bedroom = new Room("in the bedroom");
+        living_room = new Room("in the living room");
+        basement = new Room("down in the basement");
+        restroom = new Room("in the bathroom/restroom");
+        balcony = new Room("on the balcony");
+        attic = new Room("up in the attic");
+        hallway = new Room("in the hallway");
+        basement_closet = new Room("in the basement's closet... But it looks like you're stuck!");
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -54,8 +75,39 @@ public class Game
 
         lab.setExit("north", outside);
         lab.setExit("east", office);
+        lab.setExit("south", hallway);
+        lab.setExit("down", basement);
 
         office.setExit("west", lab);
+        office.setExit("down", cellar);
+        office.setExit("east", closet);
+        office.setExit("north", restroom);
+        
+        cellar.setExit("up", office);
+        
+        closet.setExit("west", office);
+        
+        restroom.setExit("south", office);
+        
+        hallway.setExit("north", lab);
+        hallway.setExit("east", bedroom);
+        hallway.setExit("up", living_room);
+        
+        bedroom.setExit("west", hallway);
+        bedroom.setExit("north", kitchen);
+        
+        living_room.setExit("down", hallway);
+        living_room.setExit("east", balcony);
+        living_room.setExit("up", attic);
+        
+        kitchen.setExit("south", bedroom);
+        
+        balcony.setExit("west",living_room);
+        
+        attic.setExit("down", living_room);
+        
+        basement.setExit("up", lab);
+        basement.setExit("south", basement_closet);
 
         currentRoom = outside;  // start game outside
     }
@@ -101,6 +153,13 @@ public class Game
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
+        if(commandWord == CommandWord.LOOK){
+            look();
+        }
+        
+        if(commandWord == CommandWord.EAT){
+            eat();
+        }
 
         switch (commandWord) {
             case UNKNOWN:
@@ -162,6 +221,26 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    
+    /**
+     * Lets player look around to see what room they are in.
+     * @param look The look command for player
+     * @return the look command.
+     */
+    private void look()
+    {
+        System.out.println(currentRoom.getLongDescription());
+    }
+    
+    /**
+     * Gives the player the option to eat food.
+     * @param look The eat command for player to eat.
+     * @return the eat command.
+     */
+    private void eat()
+    {
+        System.out.println("You have eaten now and you are not hungry anymore.");
     }
 
     /** 
