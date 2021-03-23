@@ -33,6 +33,7 @@ public class Item
     }
     
     /**
+     * The weight of the items.
      * @param weight
      * @return the weight of the item(s)
      */
@@ -41,6 +42,10 @@ public class Item
         return weight;
     }
     
+    /**
+     * Gives line for item name, description and weight.
+     * @return name, description and weight.
+     */
     public String toString()
     {
         return "Item:" + description + "weight " + weight;

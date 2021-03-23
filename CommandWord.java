@@ -34,6 +34,9 @@ public enum CommandWord
         return commandString;
     }
     
+    /**
+     * This helps print out every command that is created.
+     */
     public void showAll()
     {
         for(String command : validCommands)

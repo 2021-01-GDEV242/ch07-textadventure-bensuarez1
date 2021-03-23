@@ -47,6 +47,11 @@ public class Room
         exits.put(direction, neighbor);
     }
 
+    /**
+     * Gives list of items to add.
+     * @param list, List of items.
+     * @return items that are listed.
+     */
     public void addItem()
     {
         list.add(new Item("soda can",1));
@@ -58,6 +63,10 @@ public class Room
         list.add(new Item("phone",2));
     }
     
+    /**
+     * Prints out the item's label in-game.
+     * @return the returnString.
+     */
     public String getItemString()
     {
         String returnString = "Item: ";

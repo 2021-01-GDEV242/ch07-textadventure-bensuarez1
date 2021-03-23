@@ -62,7 +62,7 @@ public class Game
         balcony = new Room("on the balcony");
         attic = new Room("up in the attic");
         hallway = new Room("in the hallway");
-        basement_closet = new Room("in the basement's closet");
+        basement_closet = new Room("in the basement's closet... But it looks like you're stuck!");
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -234,7 +234,8 @@ public class Game
     }
     
     /**
-     * @param look The eat command for player to eat food.
+     * Gives the player the option to eat food.
+     * @param look The eat command for player to eat.
      * @return the eat command.
      */
     private void eat()
