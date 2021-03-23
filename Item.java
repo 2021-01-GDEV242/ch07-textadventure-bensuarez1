@@ -43,6 +43,6 @@ public class Item
     
     public String toString()
     {
-        return "Item " + description + "weight " + weight;
+        return "Item:" + description + "weight " + weight;
     }
 }
